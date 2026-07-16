@@ -1,4 +1,4 @@
-const notFound = (req, res, next) => {
+export const notFound = (req, res, next) => {
   res.status(404).json({
     success: false,
     error: {
@@ -6,5 +6,3 @@ const notFound = (req, res, next) => {
     }
   });
 };
-
-export default notFound;
