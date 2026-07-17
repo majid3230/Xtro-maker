@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Spinner from "./components/Spinner.jsx";
 
-const Home = lazy(() => import('./Home.jsx'));
+const Home = lazy(() => import("./Home.module.jsx"));
 const Dashboard = lazy(() => import("./Dashboard.module.jsx"));
 const About = lazy(() => import('./About.jsx'));
 const Contact = lazy(() => import('./Contact.jsx'));
