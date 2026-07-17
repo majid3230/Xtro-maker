@@ -1,29 +1,15 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import AppRoutes from './routes.jsx';
-import Navbar from './components/Navbar.jsx';
-import Footer from './components/Footer.jsx';
-import ToastProvider from './components/ToastProvider.jsx';
-import { useTheme } from './hooks/useTheme.js';
+import React, { Suspense } from "react";
+import routes from "./routes.jsx";
+import Spinner from "./components/Spinner.jsx";
 
-const App = () => {
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
-  }, [theme]);
+function App() {
 
   return (
-    <Router>
-      <ToastProvider>
-        <Navbar />
-        <main>
-          <AppRoutes />
-        </main>
-        <Footer />
-      </ToastProvider>
-    </Router>
+    <Suspense fallback={<Spinner />}>
+      {routes}
+    </Suspense>
   );
-};
+
+}
 
 export default App;
