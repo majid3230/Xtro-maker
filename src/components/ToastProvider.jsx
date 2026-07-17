@@ -1,6 +1,6 @@
 import React, { createContext, useState, useCallback } from 'react';
 import { X } from 'lucide-react';
-import styles from "./Toast.module.css";
+import styles from "../styles/Toast.module.css";
 
 export const ToastContext = createContext(null);
 
