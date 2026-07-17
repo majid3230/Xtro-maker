@@ -1,44 +1,74 @@
-import React, { createContext, useState, useCallback } from 'react';
-import { X } from 'lucide-react';
-import styles from "../styles/Toast.module.css";
+import React, {
+createContext,
+useContext,
+useState
+} from "react";
 
-export const ToastContext = createContext(null);
 
-let idCounter = 0;
+const ToastContext = createContext();
 
-const ToastProvider = ({ children }) => {
-  const [toasts, setToasts] = useState([]);
 
-  const addToast = useCallback((message, type = 'success', duration = 3000) => {
-    const id = ++idCounter;
-    setToasts(prev => [...prev, { id, message, type }]);
+export function useToast(){
 
-    if (duration > 0) {
-      setTimeout(() => {
-        removeToast(id);
-      }, duration);
-    }
-  }, []);
+return useContext(ToastContext);
 
-  const removeToast = useCallback((id) => {
-    setToasts(prev => prev.filter(toast => toast.id !== id));
-  }, []);
+}
 
-  return (
-    <ToastContext.Provider value={{ addToast, removeToast }}>
-      {children}
-      <div className={styles.toastContainer}>
-        {toasts.map(toast => (
-          <div key={toast.id} className={`${styles.toast} ${styles[toast.type]}`}>
-            <span className={styles.message}>{toast.message}</span>
-            <button onClick={() => removeToast(toast.id)} className={styles.closeBtn} aria-label="Close toast">
-              <X size={18} />
-            </button>
-          </div>
-        ))}
-      </div>
-    </ToastContext.Provider>
-  );
+
+
+function ToastProvider({children}){
+
+
+const [toast,setToast] = useState("");
+
+
+
+const showToast = (message)=>{
+
+setToast(message);
+
+
+setTimeout(()=>{
+
+setToast("");
+
+},3000);
+
+
 };
+
+
+
+return (
+
+<ToastContext.Provider 
+value={{
+toast,
+showToast
+}}
+>
+
+
+{children}
+
+
+{toast && (
+
+<div>
+
+{toast}
+
+</div>
+
+)}
+
+
+</ToastContext.Provider>
+
+);
+
+
+}
+
 
 export default ToastProvider;
