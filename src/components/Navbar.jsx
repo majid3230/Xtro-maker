@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from "../hooks/useTheme.js";
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import styles from './Navbar.module.css';
 
