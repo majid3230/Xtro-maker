@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useToast } from "../hooks/useToast.js";
 import { Download, Loader2, Sparkles } from 'lucide-react';
-import styles from './Home.module.css';
+import styles from "../styles/Home.module.css";
 
 const Home = () => {
   const [story, setStory] = useState('');
