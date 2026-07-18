@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { apiService } from '../../services/api';
-import { useToast } from '../../hooks/useToast';
-import { copyToClipboard, downloadAsTxt } from '../../utils/helpers';
-import Skeleton from '../../components/Skeleton/Skeleton';
-import { Copy, Download, RefreshCw } from 'lucide-react';
-import styles from './Dashboard.module.css';
+import React, { useState, useEffect } from "react";
+import { apiService } from "../services/api.js";
+import { useToast } from "../hooks/useToast.js";
+import { copyToClipboard, downloadAsTxt } from "../utils/helpers.js";
+import Skeleton from "../components/Skeleton.jsx";
+import { Copy, Download, RefreshCw } from "lucide-react";
+import styles from "../styles/Dashboard.module.css";
 
 const Dashboard = () => {
   const [data, setData] = useState(null);
