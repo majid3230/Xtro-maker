@@ -11,6 +11,7 @@ const Home = () => {
 
   const { addToast } = useToast();
 
+
   const handleGenerate = async () => {
     if (!story.trim()) {
       addToast("Please enter a story first", "error");
@@ -21,9 +22,10 @@ const Home = () => {
     setVideoUrl(null);
 
     try {
-      const result = await apiService.post("/generate", {
+      const result = await apiService.post("/api/process", {
         story: story,
       });
+
 
       if (result?.videoUrl) {
         setVideoUrl(result.videoUrl);
@@ -34,20 +36,24 @@ const Home = () => {
 
     } catch (error) {
       console.error("Generate Error:", error);
+
       addToast(
         error.message || "Failed to generate video",
         "error"
       );
+
     } finally {
       setIsGenerating(false);
     }
   };
 
 
+
   const handleDownload = () => {
     if (!videoUrl) return;
 
     const link = document.createElement("a");
+
     link.href = videoUrl;
     link.download = `story-video-${Date.now()}.mp4`;
 
@@ -59,20 +65,25 @@ const Home = () => {
   };
 
 
+
   return (
     <div className={styles.container}>
 
       <div className={styles.generatorSection}>
 
+
         <div className={styles.header}>
+
           <h1 className={styles.title}>
             AI Story to Video
           </h1>
 
           <p className={styles.subtitle}>
-            Type your story and let AI generate a cinematic video.
+            Type your story and let AI generate a cinematic video for you.
           </p>
+
         </div>
+
 
 
         <div className={styles.inputBox}>
@@ -98,18 +109,22 @@ const Home = () => {
               {isGenerating ? (
                 <>
                   <Loader2
-                    className={styles.spinIcon}
                     size={20}
+                    className={styles.spinIcon}
                   />
 
                   Generating Video...
+
                 </>
               ) : (
+
                 <>
                   <Sparkles size={20} />
 
                   Generate Video
+
                 </>
+
               )}
 
             </button>
@@ -117,6 +132,7 @@ const Home = () => {
           </div>
 
         </div>
+
 
 
 
@@ -140,6 +156,7 @@ const Home = () => {
             </div>
 
 
+
             <button
               className={styles.downloadBtn}
               onClick={handleDownload}
@@ -155,6 +172,7 @@ const Home = () => {
           </div>
 
         )}
+
 
       </div>
 
