@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useToast } from '../../hooks/useToast';
+import { useToast } from "../hooks/useToast.js";
 import { Download, Loader2, Sparkles } from 'lucide-react';
 import styles from './Home.module.css';
 
